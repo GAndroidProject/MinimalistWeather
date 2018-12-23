@@ -26,7 +26,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarHelper.statusBarLightMode(this);
-
+//  seachal annotation 把初始化这个耗时操作放在 io 进程中操作。
         Observable.just(initAppData())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,6 +54,7 @@ public class WelcomeActivity extends BaseActivity {
             }
         }
         CityDatabaseHelper.importCityDB();
+//        seachal annotation 因为 just 中参数类型是 T， 也就是泛型。
         return null;
     }
 }

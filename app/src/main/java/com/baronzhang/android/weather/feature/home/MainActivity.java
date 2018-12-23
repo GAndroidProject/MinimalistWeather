@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity
         assert drawerLayout != null;
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
+//    ####    seachal 注意：xml 文件中布局是一个FrameLayout，不是 Fragment，不要搞混了。此行代码执行完，if判断中homePageFragment==null，所以并没有从 容器FrameLayout 中得到 Fragment 的实例。 ######
         HomePageFragment homePageFragment = (HomePageFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (homePageFragment == null) {
 

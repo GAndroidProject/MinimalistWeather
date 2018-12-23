@@ -189,6 +189,10 @@ public class IndicatorView extends LinearLayout {
         setMeasuredDimension(indicatorViewWidth, indicatorViewHeight);
     }
 
+    /**
+     * 绘制子 View 的方法,先绘制父的 子 View，再绘制自定义的子 View。
+     * @param canvas
+     */
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -227,8 +231,9 @@ public class IndicatorView extends LinearLayout {
 
     public void setIndicatorValue(int indicatorValue) {
 
-        if (indicatorValue < 0)
+        if (indicatorValue < 0) {
             throw new IllegalStateException("参数indicatorValue必须大于0");
+        }
 
         this.indicatorValue = indicatorValue;
         if (indicatorValueChangeListener != null) {
@@ -257,6 +262,7 @@ public class IndicatorView extends LinearLayout {
             marker = drawableToBitmap(createVectorDrawable(markerId, indicatorTextColor));
             indicatorValueChangeListener.onChange(this.indicatorValue, stateDescription, indicatorTextColor);
         }
+//      seachal annotation：  每次设置值后数值发生了变化，请求重绘（ondraw()），以改变位置
         invalidate();
     }
 
